@@ -12,11 +12,11 @@
     
     body {
         background-color: #6c757d;
-        font-size: 1.2em;
     }
     
     label.input-group-text {
-        width: 85%;
+        width: 80%;
+        font-size: 2em;
         font-weight: 700;
     }
 
@@ -26,14 +26,19 @@
     }
     
     .input-group > button {
-        width: 2.5rem;
+        width: 3.5rem;
     }
     
     input.form-control {
-        width: 3rem;
-        max-width: 3rem;
+        width: 4rem;
+        max-width: 5rem;
         font-weight: 700;
         text-align: right;
+        font-size: 2em;
+    }
+    
+    i {
+        font-size: 2em;
     }
     
     select {
@@ -42,6 +47,7 @@
     
     option {
         font-weight: 700;
+        
     }
     
     .form-check-input:checked {
@@ -57,14 +63,14 @@
     <div class="input-group">
         <label class="input-group-text">Dadi</label>
 
-        <select id="die1" class="form-control" style="width:4rem; max-width: 4rem; font-weight: 700;">
+        <select id="die1" class="form-control" style="width:4rem; max-width: 6rem; font-size: 2em; font-weight: 700;">
             <option value="12">D12</option>
             <option value="10">D10</option>
             <option value="8">D8</option>
             <option value="6">D6</option>
         </select>
 
-        <select id="die2" class="form-control" style="width:4rem; max-width: 4rem; font-weight: 700;">
+        <select id="die2" class="form-control" style="width:4rem; max-width: 6rem; font-size: 2em; font-weight: 700;">
             <option value="12">D12</option>
             <option value="10">D10</option>
             <option value="8">D8</option>
@@ -76,57 +82,59 @@
     <div class="input-group">
         <label class="input-group-text">Bonus Precisione</label>
         <button class="btn btnMinus border"><i class="fa-solid fa-chevron-left"></i></button>
-        <input id="mod" type=number max="99" min="-99" value=0 class="form-control" style="width:3.0rem;">
+        <input id="mod" type=number max="99" min="-99" value=0 class="form-control">
         <button class="btn btnPlus border"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
 
     <div class="input-group">
         <label class="input-group-text">Danni Arma</label>
         <button class="btn btnMinus border"><i class="fa-solid fa-chevron-left"></i></button>
-        <input id="wd" type=number value=0 class="form-control" style="width:3.0rem;">
+        <input id="wd" type=number value=0 class="form-control">
         <button class="btn btnPlus border"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
     
     <div class="input-group" style="align-items: center;">
         <label class="input-group-text">Aggiungi TM</label>
-        <span class="input-group-text h-100" style="border-right: none; width: 2.5em;"></span>
+        <span class="input-group-text h-100" style="border-right: none; width: 3.5em;"></span>
         <input class="input-group-text form-check-input form-control h-100 mt-0" type="checkbox" value="" id="checkTM" style="border-right: none; border-left: none; width:3.0rem;">
-        <span class="input-group-text h-100" style="border-left none; width: 2.5em;"></span>
+        <span class="input-group-text h-100" style="border-left none; width: 3.5em;"></span>
     </div>
 
     <div class="input-group">
         <label class="input-group-text">Danni Bonus</label>
         <button class="btn btnMinus border"><i class="fa-solid fa-chevron-left"></i></button>
-        <input id="bd" type=number value=0 class="form-control" style="width:3.0rem;">
+        <input id="bd" type=number value=0 class="form-control">
         <button class="btn btnPlus border"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
 
     <div class="input-group">
         <label class="input-group-text">Difesa</label>
         <button class="btn btnMinus border"><i class="fa-solid fa-chevron-left"></i></button>
-        <input id="def" type=number value=11 class="form-control" style="width:3.0rem;">
+        <input id="def" type=number value=11 class="form-control">
         <button class="btn btnPlus border"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
 
     <div class="input-group">
         <label class="input-group-text">Turni</label>
-        <label class="btn btnMinus border"><i class="fa-solid fa-chevron-left"></i></label>
-        <input id="turns" type=number min="1" max="99" value=1 readonly="" class="form-control" style="width:3.0rem;">
+        <button class="btn btnMinus border"><i class="fa-solid fa-chevron-left"></i></button>
+        <input id="turns" type=number min="1" max="99" value=1 readonly="" class="form-control">
         <button class="btn btnPlus border"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
 
     
-    <button id="goBtn" class="btn btn-outline-danger my-3 w-50 m-auto"><i class="fas fa-bolt me-2 text-danger"></i><span style="font-weight: 700;">CALCOLA</span></button>
+    <button id="goBtn" class="btn btn-outline-danger my-3 w-50 m-auto"><i class="fas fa-bolt me-2 text-danger"></i><span style="font-size: 2em; font-weight: 700;">CALCOLA</span></button>
     
 
-    <div class="input-group">
-        <label class="input-group-text">Probabilit√† di colpire</label>
-        <span class="form-control text-end pe-5" id="hitChance" style="width: 8rem; max-width: 8rem; font-weight: 700;">---</span>
+    <div class="input-group" style="align-items: center;">
+        <label class="input-group-text">Probabilit‡ di colpire</label>
+        
+        <span class="form-control text-end pe-5 h-100" id="hitChance" style="max-width: 11.5rem; width:11.5rem; font-size: 2rem; font-weight: 700;">---</span>
+        
     </div>
     
-    <div class="input-group">
+    <div class="input-group" style="align-items: center;">
         <label class="input-group-text">Danni totali</label>
-        <span class="form-control text-end pe-5" id="avgDamage" style="width: 8rem; max-width: 8rem; font-weight: 700;">---</span>
+        <span class="form-control text-end pe-5 h-100" id="avgDamage" style="width: 11.5rem; max-width: 11.5rem; font-size: 2rem; font-weight: 700;">---</span>
     </div>
 
 </div>
