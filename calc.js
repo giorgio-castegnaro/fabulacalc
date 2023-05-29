@@ -55,9 +55,12 @@ class DicePair {
             }
         }
 
-        return (comb - fail) / comb;
-
-
+        //return (comb - fail) / comb;
+        let res = {};
+        res.toHit = (comb - fail) / comb;
+        res.toCrit = crit / comb;
+        return res;
+        
     }
 
 }
@@ -107,8 +110,9 @@ function calculate(die1, die2, wBaseDamage, useTM, bonusDamage, mod, critMin, de
     }
 
 
-    let hitChance = pair.hitChance(def, mod, critMin);
-
+    let chance = pair.hitChance(def, mod, critMin);
+    let hitChance = chance.toHit;
+    
     let result = {};
     result.hitChance = Math.round(hitChance * 100) / 100;
     result.averageDamage = Math.round(hitChance * turns * finalW * 100) / 100;
