@@ -115,6 +115,7 @@ function calculate(die1, die2, wBaseDamage, useTM, bonusDamage, mod, critMin, de
     
     let result = {};
     result.hitChance = Math.round(hitChance * 100) / 100;
+    result.critChance = Math.round(chance.toCrit * 100) /100;
     result.averageDamage = Math.round(hitChance * turns * finalW * 100) / 100;
 
     return result;
