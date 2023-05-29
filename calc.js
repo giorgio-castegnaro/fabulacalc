@@ -34,17 +34,23 @@ class DicePair {
 
     hitChance(def, mod, critMin) {
         let fail = 0;
+        let crit = 0;
         let comb = 0;
 
         for (let i = this.major.min; i < this.major.max + 1; i++) {
             for (let k = this.minor.min; k < this.minor.max + 1; k++) {
-                if (def > i + k + mod) {
-                    if (k >= critMin && i + k > 2 && i === k) {
-                        //crit
-                    } else {
-                        fail++;
-                    }
+                
+                let isCrit = false;
+                
+                if(k >= critMin && i + k > 2 && i === k){
+                    crit++;
+                    isCrit = true;
                 }
+                
+                if(!isCrit && def > i + k + mod){
+                    fail++;
+                }
+                
                 comb++;
             }
         }
