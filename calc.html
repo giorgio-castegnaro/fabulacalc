@@ -1,146 +1,157 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="customInput.css"/>
-<script src="customInput.js"></script>
-<script src="custom.js"></script>
-<script src="calc.js"></script>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #6c757d;
+            font-weight: 700;
+        }
 
+        label.input-group-text {
+            width: 60%;
+        }
 
-<style>
-    
-    body {
-        background-color: #6c757d;
-    }
-    
-    label.input-group-text {
-        width: 80%;
-        font-size: 2em;
-        font-weight: 700;
-    }
+        .input-group {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
 
-    .input-group {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-    }
-    
-    .input-group > button {
-        width: 3.5rem;
-    }
-    
-    input.form-control {
-        width: 4rem;
-        max-width: 5rem;
-        font-weight: 700;
-        text-align: right;
-        font-size: 2em;
-    }
-    
-    i {
-        font-size: 2em;
-    }
-    
-    select {
-        font-weight: 700;
-    }
-    
-    option {
-        font-weight: 700;
+        .input-group > button {
+            width: 3.5rem;
+        }
+
+        input.form-control {
+            width: 3.5rem;
+            max-width: 3.5rem;
+            text-align: right;
+        }
         
-    }
-    
-    .form-check-input:checked {
-        border: 1px solid #ced4da;
-    }
-    
-</style>
-
-<div class="row mx-auto mt-5 shadow bg-dark" style="width:100%; max-width: 60rem;  margin-left:0rem; padding-left:0.2rem; padding-right:0.2rem;">
-
-    <h3 class="text-center pt-2">Fabula Calculator</h3>
-    
-    <div class="input-group">
-        <label class="input-group-text">Dadi</label>
-
-        <select id="die1" class="form-control" style="width:4rem; max-width: 6rem; font-size: 2em; font-weight: 700;">
-            <option value="12">D12</option>
-            <option value="10">D10</option>
-            <option value="8">D8</option>
-            <option value="6">D6</option>
-        </select>
-
-        <select id="die2" class="form-control" style="width:4rem; max-width: 6rem; font-size: 2em; font-weight: 700;">
-            <option value="12">D12</option>
-            <option value="10">D10</option>
-            <option value="8">D8</option>
-            <option value="6">D6</option>
-        </select>
-
-    </div>
-
-    <div class="input-group">
-        <label class="input-group-text">Bonus Precisione</label>
-        <button class="btn btnMinus border"><i class="fa-solid fa-chevron-left"></i></button>
-        <input id="mod" type=number max="99" min="-99" value=0 class="form-control">
-        <button class="btn btnPlus border"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>
-
-    <div class="input-group">
-        <label class="input-group-text">Danni Arma</label>
-        <button class="btn btnMinus border"><i class="fa-solid fa-chevron-left"></i></button>
-        <input id="wd" type=number value=0 class="form-control">
-        <button class="btn btnPlus border"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>
-    
-    <div class="input-group" style="align-items: center;">
-        <label class="input-group-text">Aggiungi TM</label>
-        <span class="input-group-text h-100" style="border-right: none; width: 3.5em;"></span>
-        <input class="input-group-text form-check-input form-control h-100 mt-0" type="checkbox" value="" id="checkTM" style="border-right: none; border-left: none; width:3.0rem;">
-        <span class="input-group-text h-100" style="border-left none; width: 3.5em;"></span>
-    </div>
-
-    <div class="input-group">
-        <label class="input-group-text">Danni Bonus</label>
-        <button class="btn btnMinus border"><i class="fa-solid fa-chevron-left"></i></button>
-        <input id="bd" type=number value=0 class="form-control">
-        <button class="btn btnPlus border"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>
-
-    <div class="input-group">
-        <label class="input-group-text">Difesa</label>
-        <button class="btn btnMinus border"><i class="fa-solid fa-chevron-left"></i></button>
-        <input id="def" type=number value=11 class="form-control">
-        <button class="btn btnPlus border"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>
-
-    <div class="input-group">
-        <label class="input-group-text">Turni</label>
-        <button class="btn btnMinus border"><i class="fa-solid fa-chevron-left"></i></button>
-        <input id="turns" type=number min="1" max="99" value=1 readonly="" class="form-control">
-        <button class="btn btnPlus border"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>
-
-    
-    <button id="goBtn" class="btn btn-outline-danger my-3 w-50 m-auto"><i class="fas fa-bolt me-2 text-danger"></i><span style="font-size: 2em; font-weight: 700;">CALCOLA</span></button>
-    
-
-    <div class="input-group" style="align-items: center;">
-        <label class="input-group-text">Probabilit&agrave; di colpire</label>
+        button.btnMinus {
+            width: 2.5rem;
+            max-width: 2.5rem;
+        }
         
-        <span class="form-control text-end pe-5 h-100" id="hitChance" style="max-width: 11.5rem; width:11.5rem; font-size: 2rem; font-weight: 700;">---</span>
-        
-    </div>
+        button.btnPlus {
+            width: 2.5rem;
+            max-width: 2.5rem;
+        }
+
+        select {
+            text-align: center;
+        }
+
+        option {
+            
+        }
+
+        .form-check-input:checked {
+            border: 1px solid #ced4da;
+        }
+
+    </style>
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="customInput.css"/>
+    <script src="customInput.js"></script>
+    <script src="custom.js"></script>
+    <script src="calc.js"></script>
+
+
     
-    <div class="input-group" style="align-items: center;">
-        <label class="input-group-text">Danni totali</label>
-        <span class="form-control text-end pe-5 h-100" id="avgDamage" style="width: 11.5rem; max-width: 11.5rem; font-size: 2rem; font-weight: 700;">---</span>
+
+    <div class="row mx-auto mt-5 shadow bg-dark" style="width:100%; max-width: 60rem;  margin-left:0rem; padding-left:0.2rem; padding-right:0.2rem;">
+
+        <h3 class="text-center pt-2">Fabula Calculator</h3>
+
+        <div class="input-group">
+            <label class="input-group-text">Dadi</label>
+
+            <select id="die1" class="form-control" style="width:4.2rem; max-width: 4.2rem; font-weight: 700;">
+                <option value="12">D12</option>
+                <option value="10">D10</option>
+                <option value="8">D8</option>
+                <option value="6">D6</option>
+            </select>
+
+            <select id="die2" class="form-control" style="width:4.1rem; max-width: 4.1rem; font-weight: 700;">
+                <option value="12">D12</option>
+                <option value="10">D10</option>
+                <option value="8">D8</option>
+                <option value="6">D6</option>
+            </select>
+
+        </div>
+
+        <div class="input-group" style="align-items: center;">
+            <label class="input-group-text">Soglia Critico 6+</label>
+            <span class="input-group-text h-100" style="border-right: none; width: 2.5em;"></span>
+            <input class="input-group-text form-check-input form-control h-100 mt-0" type="checkbox" value="" checked id="checkCrit" style="border-right: none; border-left: none;">
+            <span class="input-group-text h-100" style="border-left none; width: 2.5em;"></span>
+        </div>
+
+        <div class="input-group">
+            <label class="input-group-text">Bonus Precisione</label>
+            <button class="btn btnMinus border"><i class="fa-solid fa-chevron-left"></i></button>
+            <input id="mod" type=number max="99" min="-99" value=0 class="form-control">
+            <button class="btn btnPlus border"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+        <div class="input-group">
+            <label class="input-group-text">Danni Arma</label>
+            <button class="btn btnMinus border"><i class="fa-solid fa-chevron-left"></i></button>
+            <input id="wd" type=number value=0 class="form-control">
+            <button class="btn btnPlus border"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+        <div class="input-group" style="align-items: center;">
+            <label class="input-group-text">Aggiungi TM medio</label>
+            <span class="input-group-text h-100" style="border-right: none; width: 2.5em;"></span>
+            <input class="input-group-text form-check-input form-control h-100 mt-0" type="checkbox" value="" id="checkTM" style="border-right: none; border-left: none; width:3.0rem;">
+            <span class="input-group-text h-100" style="border-left none; width: 2.5em;"></span>
+        </div>
+
+        <div class="input-group">
+            <label class="input-group-text">Danni Bonus</label>
+            <button class="btn btnMinus border"><i class="fa-solid fa-chevron-left"></i></button>
+            <input id="bd" type=number value=0 class="form-control">
+            <button class="btn btnPlus border"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+        <div class="input-group">
+            <label class="input-group-text">Difesa</label>
+            <button class="btn btnMinus border"><i class="fa-solid fa-chevron-left"></i></button>
+            <input id="def" type=number value=11 class="form-control">
+            <button class="btn btnPlus border"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+        <div class="input-group">
+            <label class="input-group-text">Turni</label>
+            <button class="btn btnMinus border"><i class="fa-solid fa-chevron-left"></i></button>
+            <input id="turns" type=number min="1" max="99" value=1 readonly="" class="form-control">
+            <button class="btn btnPlus border"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+
+        <button id="goBtn" class="btn btn-outline-danger my-3 w-50 m-auto"><i class="fas fa-bolt me-2 text-danger"></i><span style="font-weight: 700;">CALCOLA</span></button>
+
+
+        <div class="input-group" style="align-items: center;">
+            <label class="input-group-text">Probabilità di colpire</label>
+
+            <span class="form-control text-end pe-5 h-100" id="hitChance" style="font-weight: 700;">---</span>
+
+        </div>
+
+        <div class="input-group" style="align-items: center;">
+            <label class="input-group-text">Danni totali</label>
+            <span class="form-control text-end pe-5 h-100" id="avgDamage" style="font-weight: 700;">---</span>
+        </div>
+
     </div>
 
-</div>
 
-
-
-
-
-
+</body>

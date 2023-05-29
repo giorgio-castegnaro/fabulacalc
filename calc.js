@@ -14,34 +14,44 @@ class Die {
 class DicePair {
     min = 2;
     max = 2;
-    mid = 1;
     major;
-    values = 1;
+    minor;
 
     constructor(die1, die2) {
 
         this.min = die1.min + die2.min;
         this.max = die1.max + die2.max;
-        this.mid = 0.5 * (this.min + this.max);
 
         if (die1.max > die2.max) {
             this.major = die1;
+            this.minor = die2;
         } else {
             this.major = die2;
+            this.minor = die1;
         }
-
-        this.values = this.max + 1 - this.min;
 
     }
 
-    hitChance(def, mod) {
-        let count = 0;
-        for (let i = this.min; i < this.max + 1; i++) {
-            if (def <= i + mod) {
-                count++;
+    hitChance(def, mod, critMin) {
+        let fail = 0;
+        let comb = 0;
+
+        for (let i = this.major.min; i < this.major.max + 1; i++) {
+            for (let k = this.minor.min; k < this.minor.max + 1; k++) {
+                if (def > i + k + mod) {
+                    if (k >= critMin && i + k > 2 && i === k) {
+                        //crit
+                    } else {
+                        fail++;
+                    }
+                }
+                comb++;
             }
         }
-        return count / this.values;
+
+        return (comb - fail) / comb;
+
+
     }
 
 }
@@ -60,20 +70,26 @@ function go() {
     let die2 = new Die(parseInt($('#die2').val()));
     let def = parseInt($('#def').val());
     let wBaseDamage = parseInt($('#wd').val());
-    
+
     let useTM = $('#checkTM').is(':checked');
-    
+
+    let critMin = 6;
+
+    if (!$('#checkCrit').is(':checked')) {
+        critMin = 2;
+    }
+
     let bonus = parseInt($('#bd').val());
     let mod = parseInt($('#mod').val());
     let turns = parseInt($('#turns').val());
 
-    let res = calculate(die1, die2, wBaseDamage, useTM, bonus, mod, def, turns);
+    let res = calculate(die1, die2, wBaseDamage, useTM, bonus, mod, critMin, def, turns);
 
     $('#hitChance').text(res.hitChance);
     $('#avgDamage').text(res.averageDamage);
 }
 
-function calculate(die1, die2, wBaseDamage, useTM, bonusDamage, mod, def, turns) {
+function calculate(die1, die2, wBaseDamage, useTM, bonusDamage, mod, critMin, def, turns) {
 
 
     let pair = new DicePair(die1, die2);
@@ -85,7 +101,7 @@ function calculate(die1, die2, wBaseDamage, useTM, bonusDamage, mod, def, turns)
     }
 
 
-    let hitChance = pair.hitChance(def, mod);
+    let hitChance = pair.hitChance(def, mod, critMin);
 
     let result = {};
     result.hitChance = Math.round(hitChance * 100) / 100;
