@@ -43,7 +43,7 @@ class DicePair {
                 let isCrit = false;
                 
                 if(k >= critMin && i + k > 2 && i === k){
-                    crit++;
+                    crit +=2;
                     isCrit = true;
                 }
                 
