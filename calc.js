@@ -96,6 +96,7 @@ function go() {
 
     $('#hitChance').text(res.hitChance);
     $('#avgDamage').text(res.averageDamage);
+    $('#critChance').text(res.critChance);
 }
 
 function calculate(die1, die2, wBaseDamage, useTM, bonusDamage, mod, critMin, def, turns) {
